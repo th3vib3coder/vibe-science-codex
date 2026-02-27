@@ -278,6 +278,20 @@ Python scripts for deterministic checks. Exit code 0 = PASS, non-zero = FAIL. No
 
 All scripts: Python 3.8+, stdlib only (no external dependencies). Domain-configurable via `--config domain-config.yaml`.
 
+### Script Output Format (all scripts return JSON to stdout)
+
+**dq_gate.py** — returns `{"gate": "DQ1", "status": "PASS"|"FAIL", "checks": [{"check": "zero_variance", "passed": true, "detail": "OK", "flagged": []}]}`. Each gate runs 4-5 named checks. Thresholds configurable via `--config`.
+
+**sync_check.py** — returns `{"status": "PASS"|"FAIL", "total_numbers_in_markdown": 12, "matched": 12, "mismatched": 0, "tolerance": 0.001, "mismatches": [{"line": 34, "markdown_value": "0.823", "parsed_value": 0.823, "closest_json_key": null, "closest_diff": 0.041, "status": "NO_MATCH"}]}`. Skips dates, claim IDs, gate names. Divides percentages by 100.
+
+**tree_health.py** — returns `{"gate": "T3", "status": "PASS"|"FAIL", "checks": [...]}`. Checks: `good_ratio` (>=0.20), `exploration_ratio` (>=0.20, includes `"warning"` bool), `no_stale_branches` (5+ non-improving = stale, includes `"flagged"`), `branch_diversity` (>=2 branches, skipped in LINEAR mode).
+
+**gate_check.py** — returns `{"gate": "B0", "status": "PASS"|"FAIL", "schema_file": "...", "artifact_file": "...", "errors": [{"path": "$.claims[0]", "error": "Missing required property: 'confidence'"}], "error_count": 0}`. Lightweight validator (no jsonschema lib).
+
+**spine_entry.py** — returns `{"status": "PASS"|"FAIL", "type": "DATA_LOAD", "action": "...", "entry": "### 2026-02-27 14:05 UTC | DATA_LOAD\n..."}`. Creates SPINE.md if missing. Use `--validate-only` to check without writing.
+
+**observer.py** — returns `{"status": "OK"|"WARN"|"HALT", "total_alerts": 0, "halt_count": 0, "warn_count": 0, "info_count": 0, "alerts": [{"level": "WARN", "check": "orphaned_file", "detail": "..."}]}`. Exit 1 only on HALT or missing project dir.
+
 ---
 
 ## FOLDER STRUCTURE
