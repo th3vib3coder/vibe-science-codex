@@ -1,11 +1,11 @@
 ---
-name: vibe-science
-description: "Scientific research engine with adversarial review, tree search, and serendipity detection. Use when: exploring hypotheses, validating findings against literature, running computational experiments with quality gates, or hunting for unexpected discoveries. Do NOT use for simple Q&A, code editing, or non-research tasks."
+name: vibe-science-codex
+description: "Scientific research engine with adversarial review, tree search over hypotheses, and serendipity detection. Turns a coding agent into a rigorous research partner that hunts for artifacts, confounders, and unexpected discoveries. Use this skill whenever the user mentions research, hypotheses, scientific analysis, experimental design, literature review, data validation, quality gates, claim verification, reproducibility, or any task where correctness matters more than speed. Also use when the user wants to explore a dataset scientifically, validate findings against literature, run computational experiments with adversarial review, or hunt for unexpected patterns. Do NOT use for simple Q&A, code editing without research context, or non-scientific tasks."
 license: Apache-2.0
-compatibility: "Requires Python 3.8+ for enforcement scripts"
+compatibility: "Requires Python 3.8+ for enforcement scripts. Designed for OpenAI Codex multi-agent architecture."
 metadata:
   author: th3vib3coder
-  version: 5.5.0
+  version: "5.5.0"
 ---
 
 # Vibe Science v5.5 — ORO (Observe-Recall-Operate)
